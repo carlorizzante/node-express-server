@@ -16,13 +16,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.render("maintenance.hbs",{
-    pageTitle: "Site under maintenance",
-    pageContent: "We'll be right back in a minute!"
-  })
-  // next();
-});
+if (false) {
+  app.use((req, res, next) => {
+    res.render("maintenance.hbs",{
+      pageTitle: "Site under maintenance",
+      pageContent: "We'll be right back in a minute!"
+    })
+    // next();
+  });
+}
 
 hbs.registerPartials(__dirname + "/views/partials");
 
@@ -53,6 +55,7 @@ app.get("/bad", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000...");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}...`);
 });
